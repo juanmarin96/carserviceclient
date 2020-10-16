@@ -77,8 +77,10 @@ export class OwnerEditComponent implements OnInit {
 
   cleanOwnersFromCars(owners: any[]){
     let carsToClean = this.cars.filter(x => owners.includes(x.ownerDni));
+    console.log(carsToClean)
     if(carsToClean.length > 0){
       for (let car of carsToClean) {
+        car.ownerDni = null;
         this.carService.cleanCarOwner(car).subscribe(car =>{
           console.log(`Car with id '${car.id}'cleaned`)
         });
