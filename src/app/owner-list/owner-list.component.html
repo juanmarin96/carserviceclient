@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-title>Owners List</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let owner of owners; let i = index">          
+          <h3 style="padding: 15px;" mat-line>
+            <mat-checkbox style="padding: 10px; vertical-align: super;" *ngIf="deleting" name="{{i}}-owner" class="example-margin" [(ngModel)]="owner.delete"></mat-checkbox>           
+            <img width="25"  width="25" src="assets/user.png" alt="{{owner.name}}">
+            <a mat-button [routerLink]="['/owner-edit', owner.dni]">{{owner.name}} | <strong>{{owner.dni}}</strong></a>
+          </h3>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  
+    <button class="action-button" *ngIf="!deleting" mat-fab color="primary" [routerLink]="['/owner-add']">Add</button>
+    <button class="action-button" *ngIf="!deleting" mat-fab color="primary" (click)="deleting = true">Delete</button>
+    <button class="action-button" *ngIf="deleting" mat-fab color="primary" (click)="deleteOwners()">Confirm</button>
+    <button class="action-button" *ngIf="deleting" mat-fab color="primary" (click)="deleting = false">Cancel</button>
+  </mat-card>
